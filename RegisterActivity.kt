@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,8 +24,8 @@ class RegisterActivity : AppCompatActivity() {
 
         val createAccount = findViewById<Button>(R.id.createAccount)
             createAccount.setOnClickListener {
-                val email = findViewById<EditText>(R.id.username2).toString()
-                val password = findViewById<EditText>(R.id.password2).toString()
+                val email = findViewById<EditText>(R.id.username2).getText().toString()
+                val password = findViewById<EditText>(R.id.password2).getText().toString()
 
                 if (email == "" || password == "") {
                     val dialogBuilder = AlertDialog.Builder(this)
@@ -39,10 +40,11 @@ class RegisterActivity : AppCompatActivity() {
                     alert.show()
                 }
                 else {
-                    /*
-                    create db connection
-                    //db.collection("users").document(SharedPreferences.email).set(passwordl); // adds a document
-                     */
+                    val passwordMap = hashMapOf("password" to password)
+                    val db = FirebaseFirestore.getInstance()
+                    val docRef = db.collection("users").document(email)
+                    docRef.set(passwordMap); // adds a document
+
                     val intent = Intent(this, loginActivity::class.java)
                     intent.putExtra("Username", Username)
                     startActivity(intent)

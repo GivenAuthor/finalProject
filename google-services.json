@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "641594935840",
+    "project_id": "philbert-df642",
+    "storage_bucket": "philbert-df642.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641594935840:android:7aed402635a2b8ef068a45",
+        "android_client_info": {
+          "package_name": "com.example.philbert"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641594935840-asfj2q9siaqlnpccjk8iveietfqfrdja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB41QY6R6K-b01a-Om2MMZ0atxJy_hw1lM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641594935840-asfj2q9siaqlnpccjk8iveietfqfrdja.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

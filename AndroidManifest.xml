@@ -20,6 +20,7 @@
         <activity android:name=".reminders" />
         <activity android:name=".notes" />
         <activity android:name=".homePage" />
+        <activity android:name=".RegisterActivity" />
 
     </application>
 

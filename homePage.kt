@@ -1,10 +1,12 @@
 package com.example.philbert
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.firestore.FirebaseFirestore
 
 class homePage : AppCompatActivity() {
@@ -14,12 +16,19 @@ class homePage : AppCompatActivity() {
         val Username=intent.getStringExtra("Username").toString()
 
         val db = FirebaseFirestore.getInstance()
-        val dbNotes = db.collection("notes").document(Username)
-            .get().toString()
-
-
-        val userNote = findViewById<EditText>(R.id.notes)
-        userNote.setText(dbNotes)
+        var response = ""
+        val docRef = db.collection("notes").document(Username)
+        val noteFromDB = docRef.get()
+                .addOnSuccessListener { document ->
+                    print("document successfully fetched")
+                    response = document.getString("note").toString()
+                    val userEditText = findViewById<EditText>(R.id.notes)
+                    userEditText.setText(response.toString())
+                    }
+                .addOnFailureListener {
+                    val userEditText = findViewById<EditText>(R.id.notes)
+                    userEditText.setText("No current notes")
+                }
 
         val toReminder = findViewById<Button>(R.id.addReminder)
         toReminder.setOnClickListener{
